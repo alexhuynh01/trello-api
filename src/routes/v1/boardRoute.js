@@ -5,7 +5,9 @@
  */
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
-import { boardValidation } from '~/validations/exampleValidation'
+import { boardValidation } from '~/validations/boardValidation'
+import { boardController } from '~/controllers/boardController'
+
 
 const Router = express.Router()
 
@@ -14,6 +16,6 @@ Router.route('/')
     res.status(StatusCodes.OK).json({ messege: 'GET: APIs get list boards' })
 
   })
-  .post(boardValidation.createNew)
+  .post(boardValidation.createNew, boardController.createNew)
 
 export const boardRoutes = Router
