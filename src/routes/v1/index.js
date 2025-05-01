@@ -3,3 +3,17 @@
  * YouTube: https://youtube.com/@trungquandev
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
+import express from 'express'
+import { StatusCodes } from 'http-status-codes'
+import { boardRoutes } from './exampleRoute'
+
+const Router = express.Router()
+
+Router.get('/status', (req, res) => {
+  res.status(StatusCodes.OK).json({ messege: 'APIs V1 is working' })
+})
+
+// Boards APIs
+Router.use('/boards', boardRoutes)
+
+export const APIs_V1 = Router
