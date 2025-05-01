@@ -23,8 +23,6 @@ const START_SERVER = async () => {
   // Middleware xử lý lỗi tập trung
   app.use(errorHandlingMiddleware)
 
-  const hostname = 'localhost'
-  const port = 8017
 
   app.get('/', async(req, res) => {
 
@@ -40,10 +38,9 @@ const START_SERVER = async () => {
   // Thực hiện tác vụ clenup trước khi dừng sever lại
   exitHook(() => {
     CLOSE_DB()
-    console.log('4. Closed connection to MongoDB Atlas...')
+    console.log(' 4. Closed connection to MongoDB Atlas...')
   })
 }
-
 
 
 // IIFE (Immediately Invoked Function Expression )

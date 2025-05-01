@@ -4,7 +4,7 @@
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
 import { StatusCodes } from 'http-status-codes'
-import ApiError from '~/utils/ApiError'
+import { boardService } from '~/services/boardService'
 
 const createNew = async (req, res, next) => {
   try {
@@ -16,9 +16,10 @@ const createNew = async (req, res, next) => {
     // console.log('req.jwtDecoded: ', req.jwtDecoded)
 
     // Điều hướng sang tầng service
+    const createBoard = await boardService.createNew(req.body)
 
     // throw new ApiError(StatusCodes.FAILED_DEPENDENCY, 'Error from controller alexhuynh')
-    res.status(StatusCodes.CREATED).json({ messege: 'POST APIs from controller create new boards' })
+    res.status(StatusCodes.CREATED).json(createBoard)
   } catch (error) {
     next(error)
     // res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
