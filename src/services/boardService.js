@@ -6,6 +6,8 @@
  */
 
 import { slugify } from '~/utils/formatter'
+import { boardModel } from '~/models/boardModel'
+import { GET_DB } from '~/config/mongodb'
 
 const createNew = async (reqBody) => {
   // console.log('boardService.createNew được gọi với:', reqBody)
@@ -14,7 +16,14 @@ const createNew = async (reqBody) => {
       ...reqBody,
       slug: slugify(reqBody.title)
     }
-    return newBoard
+
+    const createBoard = await boardModel.createNew(newBoard)
+    console.log(createBoard)
+
+    const getNewBoard = await boardModel.findOneById(createBoard.insertedId)
+    console.log('getNewBoard: ', getNewBoard)
+
+    return getNewBoard
   } catch (error) { throw error }
 }
 

@@ -26,7 +26,7 @@ const createNew = async (req, res, next) => {
     await correctCondition.validateAsync(req.body, { abortEarly: false })
     // Validate dữ liệu hợp lệ thì tiếp tục xử lý sang controller
     next()
-    res.status(StatusCodes.CREATED).json({ messege: 'POST APIs from validation create new boards' })
+    // res.status(StatusCodes.CREATED).json({ messege: 'POST APIs from validation create new boards' })
   } catch (error) {
     // const errorMessage = new Error(error).message
     // const customError = new ApiError(StatusCodes.UNPROCESSABLE_ENTITY, errorMessage)
